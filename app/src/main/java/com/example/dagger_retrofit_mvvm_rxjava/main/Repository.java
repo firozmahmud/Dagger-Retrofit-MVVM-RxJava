@@ -16,7 +16,7 @@ public class Repository {
     /*
      * method to call login api
      * */
-    public Observable<JsonElement> executeLogin(String mobileNumber, String password) {
-        return apiCallInterface.login(mobileNumber, password);
+    public Observable<JsonElement> executeApi() {
+        return apiCallInterface.getData();
     }
 }

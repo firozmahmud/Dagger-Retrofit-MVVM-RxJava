@@ -28,15 +28,15 @@ public class MainViewModel extends ViewModel {
     /*
      * method to call normal login api with $(mobileNumber + password)
      * */
-    public void hitLoginApi(String mobileNumber, String password) {
+    public void hitApi() {
 
-        disposables.add(repository.executeLogin(mobileNumber, password)
+        disposables.add(repository.executeApi()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe((d) -> responseLiveData.setValue(ApiResponse.loading()))
+                .doOnSubscribe((d) -> responseLiveData.postValue(ApiResponse.loading()))
                 .subscribe(
-                        result -> responseLiveData.setValue(ApiResponse.success(result)),
-                        throwable -> responseLiveData.setValue(ApiResponse.error(throwable))
+                        result -> responseLiveData.postValue(ApiResponse.success(result)),
+                        throwable -> responseLiveData.postValue(ApiResponse.error(throwable))
                 ));
     }
 

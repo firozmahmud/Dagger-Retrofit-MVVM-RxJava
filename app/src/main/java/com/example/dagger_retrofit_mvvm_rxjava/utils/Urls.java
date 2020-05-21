@@ -2,6 +2,10 @@ package com.example.dagger_retrofit_mvvm_rxjava.utils;
 
 public class Urls {
 
-    public static final String BASE_URL = "https://www.example.com/api/";
-    public static final String LOGIN = "login";
+    /**
+     * fake data
+     * https://jsonplaceholder.typicode.com/posts
+     */
+    public static final String BASE_URL = "https://jsonplaceholder.typicode.com/";
+    public static final String POSTS = "posts";
 }

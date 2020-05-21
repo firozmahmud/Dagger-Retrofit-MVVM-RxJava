@@ -14,11 +14,11 @@
 
 
         <Button
-            android:id="@+id/loginBtn"
+            android:id="@+id/getDataBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/black"
-            android:text="Login"
+            android:text="Get Data"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="18sp" />

@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.annotations.Nullable;
 
+import static com.example.dagger_retrofit_mvvm_rxjava.utils.Status.COMPLETED;
 import static com.example.dagger_retrofit_mvvm_rxjava.utils.Status.ERROR;
 import static com.example.dagger_retrofit_mvvm_rxjava.utils.Status.LOADING;
 import static com.example.dagger_retrofit_mvvm_rxjava.utils.Status.SUCCESS;

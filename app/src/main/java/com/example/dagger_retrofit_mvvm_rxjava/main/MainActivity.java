@@ -5,6 +5,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.dagger_retrofit_mvvm_rxjava.R;
@@ -13,7 +14,13 @@ import com.example.dagger_retrofit_mvvm_rxjava.databinding.ActivityMainBinding;
 import com.example.dagger_retrofit_mvvm_rxjava.utils.ApiResponse;
 import com.example.dagger_retrofit_mvvm_rxjava.utils.Constant;
 import com.example.dagger_retrofit_mvvm_rxjava.utils.ViewModelFactory;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -43,13 +50,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void setListener() {
 
-        binding.loginBtn.setOnClickListener(v -> {
+        binding.getDataBtn.setOnClickListener(v -> {
 
             if (!Constant.checkInternetConnection(MainActivity.this)) {
 
                 Toast.makeText(MainActivity.this, "No internet", Toast.LENGTH_SHORT).show();
             } else {
-                viewModel.hitLoginApi("01744885126", "1234");
+                viewModel.hitApi();
             }
 
         });
@@ -81,10 +88,23 @@ public class MainActivity extends AppCompatActivity {
 
     private void renderSuccessResponse(JsonElement data) {
 
+        List<MyData> myData = parseJSON(data);
+
         if (!data.isJsonNull()) {
             Toast.makeText(this, "success data", Toast.LENGTH_SHORT).show();
+            Log.d("firozmahmud", myData.get(0).getTitle());
         } else {
             Toast.makeText(this, "Error data", Toast.LENGTH_SHORT).show();
         }
+    }
+
+
+    private List<MyData> parseJSON(JsonElement jsonElement) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<List<MyData>>() {
+        }.getType();
+        List<MyData> dataList = gson.fromJson(jsonElement, type);
+
+        return dataList;
     }
 }
