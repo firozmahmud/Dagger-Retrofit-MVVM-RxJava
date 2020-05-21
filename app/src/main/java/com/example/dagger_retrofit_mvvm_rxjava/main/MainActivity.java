@@ -100,10 +100,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     private List<MyData> parseJSON(JsonElement jsonElement) {
+
         Gson gson = new Gson();
         Type type = new TypeToken<List<MyData>>() {
         }.getType();
+
         List<MyData> dataList = gson.fromJson(jsonElement, type);
+
+        /**
+         * If data is JsonObject
+         * then
+         * MyData myData = gson.fromJson(jsonElement, MyData.class);
+         */
 
         return dataList;
     }
